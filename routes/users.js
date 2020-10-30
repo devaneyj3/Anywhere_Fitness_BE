@@ -3,8 +3,8 @@ var router = express.Router();
 let db = require('../data/db_config')
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  const data = db('people')
+router.get('/', async function(req, res, next) {
+  const data = await db('people')
   console.log(data)
   if (data) {
     res.status(200).send(data)
@@ -14,9 +14,9 @@ router.get('/', function(req, res, next) {
   }
 });
 
-router.post('/create', function(req, res, next) {
-  const create = db('people').insert(req.body)
-  console.log(create)
+router.post('/login', async function(req, res, next) {
+  const { username, password } = req.body;
+  const create = await db('people').where({username}).first()
   if (create) {
     res.status(201).send(create)
   }
@@ -25,12 +25,11 @@ router.post('/create', function(req, res, next) {
   }
   });
 
-router.get('/:id', function(req, res, next) {
+router.get('/:id', async function(req, res, next) {
   const id = req.params.id
-  const find = db('people').where({id: id})
-  console.log(find)
-  if (find) {
-    res.status(200).send(find)
+  const user = await db('people').where({id: id}).first()
+  if (user) {
+    res.status(200).send(user)
   }
   else {
     res.status(404).send('no data found')
