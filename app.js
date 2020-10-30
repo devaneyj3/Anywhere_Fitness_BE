@@ -31,7 +31,7 @@ app.use(function(err, req, res, next) {
 });
 
 /* GET home page. */
-router.get('/', function(req, res) {
+app.get('/', function(req, res) {
   res.send("app is up");
 });
 
