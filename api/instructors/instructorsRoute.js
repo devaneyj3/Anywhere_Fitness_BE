@@ -8,7 +8,6 @@ routes.get('/', (req, res) => {
     endPoint.getEndPoint('instructors', res)
 })
 routes.post('/register', mw.missingProp, async (req, res) => {
-    console.log('instructorsroute')
     endPoint.register('instructors', res, req)
 })
 routes.post('/login', mw.missingProp, async (req, res) => {

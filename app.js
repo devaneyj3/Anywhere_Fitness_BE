@@ -4,8 +4,8 @@ let cors = require('cors');
 let logger = require('morgan');
 
 let classesRoute = require('./api/classes/classesRoutes');
-let clientsRoute = require('./api/clients/clientsRoutes');
-let instructorsRoute = require('./api/instructors/instructorsRoutes');
+let clientsRoute = require('./api/clients/clientsRoute');
+let instructorsRoute = require('./api/instructors/instructorsRoute');
 
 let app = express();
 

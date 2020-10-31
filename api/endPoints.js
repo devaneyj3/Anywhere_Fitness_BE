@@ -34,8 +34,7 @@ async function getEndPoint(text, res) {
 async function register(text, res, req) {
     const hashPassword = await helper.hashPassword(req)
     req.body.password = hashPassword;
-    console.log('trying to register') 
-    console.log('register endpoint ', req.body)
+    console.log(req.body)
     try {
         await db.addData(text, req.body)
         res.status(201).send(req.body)
@@ -75,6 +74,7 @@ async function findUser(text, req, res) {
 async function deleteData(text, req, res) {
     const { id } = req.params
     const user = await db.deleteByID(text, id)
+    console.log('deleting id')
     try {
         if (user) {
             res.status(200).send(id)
@@ -130,7 +130,7 @@ async function instructorsNewClasses(text, req, res) {
     const { id } = req.params;
     console.log('you id is', id)
     const classes = await db.instructorPostClasses(req.body, id)
-    console.log('req.body', req.body)
+    console.log('posting class,', classes)
     try {
         if (classes) {
             res.status(200).send(req.body)

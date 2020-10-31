@@ -12,6 +12,7 @@ const mw = require('../middleware');
 
 routes.get('/', async(req, res) => {
     const classes = await db.getFromDB('classes')
+    console.log('getting classes',classes)
     try {
         if (classes) {
             res.status(200).send(classes)
