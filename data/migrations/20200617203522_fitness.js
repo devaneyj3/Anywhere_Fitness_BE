@@ -22,7 +22,7 @@ exports.up = function (knex) {
             tbl.text('location').notNullable()
             tbl.integer('attendees').notNullable()
             tbl.integer('maxClassSize').notNullable().unsigned()
-            tbl.text('instructor_id').unsigned().notNullable().references('id').inTable('instructors')
+            tbl.integer('instructor_id').unsigned().notNullable().references('id').inTable('instructors')
                 .onUpdate('CASCADE')
                 .onDelete('CASCADE')
         })
