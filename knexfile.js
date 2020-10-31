@@ -4,40 +4,33 @@ module.exports = {
 
   development: {
     client: 'sqlite3',
+    debug: true,
     connection: {
       filename: './dev.sqlite3'
     },
     migrations: {
-      directory: './migrations'
+      directory: './data/migrations'
     },
+    ssl:true,
     useNullAsDefault: true,
-  },
-
-  staging: {
-    client: 'postgresql',
-    connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
-    },
     pool: {
-      min: 2,
-      max: 10
-    },
-    migrations: {
-      directory: './migrations'
+      afterCreate: (conn, done) => {
+        // runs after a connection is made to the sqlite engine
+        conn.run('PRAGMA foreign_keys = ON', done); // turn on FK enforcement
+      }
     }
   },
 
   production: {
     client: 'postgresql',
-    connection: process.env.DATABASE_URL,
-    pool: {
-      min: 2,
-      max: 10
-    },
+    debug: true,
+    connection: process.env.DATABASE_URL, 
     migrations: {
-      directory: './migrations'
+      directory: "./data/migrations"
+    },
+    ssl: {
+      rejectUnauthorized: false
     }
-  }
+  },
+
 };
