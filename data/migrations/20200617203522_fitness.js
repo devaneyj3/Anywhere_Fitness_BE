@@ -30,7 +30,7 @@ exports.up = function (knex) {
             tbl.integer('class_id').notNullable().unsigned().references('id').inTable('classes')
                 .onUpdate('CASCADE')
                 .onDelete('CASCADE')
-            tbl.text('client_id').notNullable().unsigned().references('id').inTable('clients')
+            tbl.integer('client_id').notNullable().unsigned().references('id').inTable('clients')
                 .onUpdate('CASCADE')
                 .onDelete('CASCADE')
             tbl.primary(['class_id', 'client_id'])
