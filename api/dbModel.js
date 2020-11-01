@@ -57,8 +57,8 @@ function getIdClasses(text, id) {
 
 //instructor can post classes that they teach
 function instructorPostClasses(object, id) {
-    object.instructor_id = id
-    return db('classes').insert(object, 'id')
+    console.log('instructorPostClasses, ', object)
+    return db('classes').insert(object).where({'id': id})
 }
 
 function editClasses(id, name, type, startTime, duration, intensityLevel, location, attendees, maxClassSize) {

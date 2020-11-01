@@ -128,9 +128,7 @@ async function getClassesByID(text, req, res) {
 }
 async function instructorsNewClasses(text, req, res) {
     const { id } = req.params;
-    console.log('you id is', id)
     const classes = await db.instructorPostClasses(req.body, id)
-    console.log('posting class,', classes)
     try {
         if (classes) {
             res.status(200).send(req.body)
