@@ -11,7 +11,6 @@ exports.up = function (knex) {
             tbl.text('password').notNullable()
         })
         .createTable('classes', (tbl) => {
-
             tbl.increments()
             tbl.text('name').notNullable()
             tbl.text('type').notNullable()
