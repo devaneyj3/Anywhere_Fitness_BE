@@ -35,6 +35,9 @@ routes.delete('/:id', mw.restrictedRoute, (req, res) => {
 routes.put('/:id', mw.restrictedRoute, mw.missingClassProps, (req, res) => {
     endPoint.editData('classes', req, res)
 })
+routes.put('/:id/updateAttendees', mw.restrictedRoute, (req, res) => {
+    endPoint.incrementAttendees('classes', req, res)
+})
 
 
 

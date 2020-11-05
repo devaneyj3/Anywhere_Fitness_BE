@@ -11,7 +11,8 @@ module.exports = {
     getIdClasses,
     instructorPostClasses,
     editClasses,
-    addClassToClient
+    addClassToClient,
+    incrementClassAttendees
 }
 
 //reusable get function to retreive data from all databases
@@ -77,6 +78,10 @@ function editClasses(id, name, type, startTime, duration, intensityLevel, locati
 
 function addClassToClient(id, clasID) {
     return db('clients_classes').insert({'client_id': id, 'class_id': clasID})
+}
+
+function incrementClassAttendees(id) {
+    return db('classes').where({'id': id}).increment('attendees', 1 )
 }
 
 function clearDatabase(text) {

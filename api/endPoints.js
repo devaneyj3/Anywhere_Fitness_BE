@@ -14,7 +14,8 @@ module.exports = {
     editData,
     getClassesByID,
     instructorsNewClasses,
-    addClientClass
+    addClientClass,
+    incrementAttendees
 }
 
 async function getEndPoint(text, res) {
@@ -147,6 +148,20 @@ async function addClientClass(req, res) {
     try {
         if (classes) {
             res.status(200).send({message: `Class ID: ${classID} successfully added`})
+        } else {
+            helper.notFound(text, res)
+        }
+    } catch  {
+        helper.dbError(res)
+    }
+}
+
+async function incrementAttendees(text, req, res) {
+    const { id } = req.params
+    const data = await db.incrementClassAttendees(id)
+    try {
+        if (data) {
+            res.status(200).send(id)
         } else {
             helper.notFound(text, res)
         }
