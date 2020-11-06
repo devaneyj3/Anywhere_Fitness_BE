@@ -15,7 +15,7 @@ exports.up = function (knex) {
             tbl.text('name').notNullable()
             tbl.text('type').notNullable()
             tbl.text('instructor_name').notNullable()
-            tbl.datetime('startTime').notNullable()
+            tbl.timestamp('startTime').notNullable()
             tbl.integer('duration').notNullable().unsigned()
             tbl.text('intensityLevel').notNullable()
             tbl.text('location').notNullable()
